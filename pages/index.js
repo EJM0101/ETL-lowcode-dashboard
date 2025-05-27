@@ -52,28 +52,6 @@ export default function Home() {
   };
 
   return (
-    <style>
-          @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Styles globaux personnalisés */
-body {
-  @apply bg-gray-50 text-gray-800 font-sans;
-}
-
-h1, h2 {
-  @apply text-gray-900;
-}
-
-input[type="file"] {
-  @apply border border-gray-300 rounded px-2 py-1;
-}
-
-table th, table td {
-  @apply border px-3 py-2 text-sm;
-}
-   </style>
     <div className="min-h-screen bg-white text-gray-800 px-4 py-10 md:px-10 lg:px-20">
       <h1 className="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-10">
         ETL Low-Code Dashboard
