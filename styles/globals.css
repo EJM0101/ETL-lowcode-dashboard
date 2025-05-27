@@ -1,32 +1,20 @@
-/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Styles globaux personnalisés */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9fafb;
-  color: #1f2937;
+  @apply bg-gray-50 text-gray-800 font-sans;
 }
 
-h1, h2, h3 {
-  color: #111827;
+h1, h2 {
+  @apply text-gray-900;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+input[type="file"] {
+  @apply border border-gray-300 rounded px-2 py-1;
 }
 
-th {
-  background-color: #f3f4f6;
-  text-align: left;
-  padding: 0.5rem;
-}
-
-td {
-  padding: 0.5rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-input, button {
-  font-size: 1rem;
+table th, table td {
+  @apply border px-3 py-2 text-sm;
 }
