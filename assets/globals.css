@@ -2,19 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Styles globaux personnalisés */
+/* Styles personnalisés globaux */
 body {
-  @apply bg-gray-50 text-gray-800 font-sans;
+  @apply bg-gray-50 text-gray-900 font-sans;
 }
 
-h1, h2 {
-  @apply text-gray-900;
+h1, h2, h3 {
+  @apply text-gray-800 font-bold;
 }
 
-input[type="file"] {
-  @apply border border-gray-300 rounded px-2 py-1;
+table {
+  @apply w-full text-sm border-collapse;
 }
 
-table th, table td {
-  @apply border px-3 py-2 text-sm;
+th, td {
+  @apply px-4 py-2 border border-gray-300;
+}
+
+input, button {
+  @apply text-sm px-3 py-2 rounded border border-gray-300;
 }
