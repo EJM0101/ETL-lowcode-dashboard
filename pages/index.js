@@ -52,52 +52,53 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-4 py-10 md:px-10 lg:px-20">
-      <h1 className="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-10">
-        ETL Low-Code Dashboard
-      </h1>
+    <div className="min-h-screen bg-gray-50 text-gray-800 px-4 md:px-12 py-10">
+      <header className="mb-10 text-center">
+        <h1 className="text-4xl font-extrabold text-indigo-700">ETL Low-Code Dashboard</h1>
+        <p className="text-lg mt-2 text-gray-500">
+          Plateforme intuitive pour l'extraction, transformation et chargement de données CSV.
+        </p>
+      </header>
 
-      <div className="max-w-4xl mx-auto space-y-8">
-        {/* Upload */}
-        <div className="bg-gray-100 border border-gray-300 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold mb-4">1. Téléversez un fichier CSV</h2>
+      <main className="space-y-12 max-w-6xl mx-auto">
+        {/* Upload Section */}
+        <section className="bg-white rounded-xl shadow p-6 border border-gray-200">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Téléverser un fichier CSV</h2>
           <input
             type="file"
             accept=".csv"
             onChange={handleFileChange}
-            className="block w-full file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+            className="block w-full text-sm border border-gray-300 rounded-md shadow-sm file:bg-indigo-50 file:text-indigo-700 file:px-4 file:py-2 file:mr-4 file:border-0 file:rounded file:font-semibold hover:file:bg-indigo-100"
           />
-        </div>
+        </section>
 
-        {/* Transformations */}
+        {/* Transformation Rules */}
         {headers.length > 0 && (
-          <div className="bg-blue-50 border border-blue-200 p-6 rounded-xl shadow">
-            <h2 className="text-xl font-semibold mb-4">2. Définir les règles de transformation</h2>
-            <div className="space-y-4">
+          <section className="bg-white rounded-xl shadow p-6 border border-indigo-100">
+            <h2 className="text-2xl font-semibold text-indigo-700 mb-6">2. Configurer les règles de transformation</h2>
+            <div className="space-y-6">
               {headers.map(col => (
-                <div key={col} className="border-b pb-3">
-                  <p className="font-medium text-indigo-800 mb-2">{col}</p>
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <label className="flex items-center gap-2">
+                <div key={col} className="border-b pb-4">
+                  <p className="font-semibold text-gray-700">{col}</p>
+                  <div className="flex flex-wrap items-center gap-4 mt-2">
+                    <label className="flex items-center space-x-2 text-sm">
                       <input type="checkbox" onChange={() => handleRuleChange(col, 'trim')} />
-                      Trim
+                      <span>Trim</span>
                     </label>
-                    <label className="flex items-center gap-2">
+                    <label className="flex items-center space-x-2 text-sm">
                       <input type="checkbox" onChange={() => handleRuleChange(col, 'upper')} />
-                      Majuscule
+                      <span>Majuscule</span>
                     </label>
-                    <label className="flex items-center gap-2">
-                      Renommer :
+                    <label className="flex items-center space-x-2 text-sm">
+                      <span>Renommer :</span>
                       <input
                         type="text"
                         placeholder="nouveau nom"
-                        onChange={(e) =>
-                          setRules(prev => ({
-                            ...prev,
-                            [col]: { ...prev[col], rename: e.target.value }
-                          }))
-                        }
-                        className="border px-2 py-1 rounded"
+                        className="border rounded px-2 py-1 text-sm"
+                        onChange={(e) => setRules(prev => ({
+                          ...prev,
+                          [col]: { ...prev[col], rename: e.target.value }
+                        }))}
                       />
                     </label>
                   </div>
@@ -106,33 +107,33 @@ export default function Home() {
             </div>
             <button
               onClick={applyTransformations}
-              className="mt-6 bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700"
+              className="mt-6 bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 shadow"
             >
               Appliquer les transformations
             </button>
-          </div>
+          </section>
         )}
 
-        {/* Preview */}
-        <div className="bg-white border border-gray-300 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold mb-4">3. Aperçu des données transformées</h2>
+        {/* Data Preview */}
+        <section className="bg-white rounded-xl shadow p-6 border border-gray-200">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">3. Aperçu des données transformées</h2>
           {preview.length === 0 ? (
             <p className="text-gray-500">Aucune donnée chargée</p>
           ) : (
-            <div className="overflow-auto">
-              <table className="min-w-full border text-sm text-left">
-                <thead>
-                  <tr className="bg-gray-100">
+            <div className="overflow-auto rounded border border-gray-200">
+              <table className="min-w-full text-sm text-left border-collapse">
+                <thead className="bg-gray-100">
+                  <tr>
                     {Object.keys(preview[0]).map((col, i) => (
-                      <th key={i} className="border px-3 py-2">{col}</th>
+                      <th key={i} className="px-4 py-2 border">{col}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {preview.map((row, i) => (
-                    <tr key={i} className="hover:bg-gray-50">
+                    <tr key={i} className="hover:bg-gray-50 border-t">
                       {Object.values(row).map((val, j) => (
-                        <td key={j} className="border px-3 py-2">{val}</td>
+                        <td key={j} className="px-4 py-2 border">{val}</td>
                       ))}
                     </tr>
                   ))}
@@ -140,8 +141,8 @@ export default function Home() {
               </table>
             </div>
           )}
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
